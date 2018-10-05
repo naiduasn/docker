@@ -60,8 +60,8 @@ RUN curl -fsSL ${JENKINS_URL} -o /usr/share/jenkins/jenkins.war \
 ENV JENKINS_UC https://updates.jenkins.io
 ENV JENKINS_UC_EXPERIMENTAL=https://updates.jenkins.io/experimental
 ENV JENKINS_INCREMENTALS_REPO_MIRROR=https://repo.jenkins-ci.org/incrementals
-ENV JAVA_OPTS=" -Djava.awt.headless=true -Djenkins.install.runSetupWizard=false -Xmx8192m -Xms4G -XX:MaxPermSize=4096M -XX:+UseG1GC -XX:+ExplicitGCInvokesConcurrent" 
-ENV JENKINS_OPTS=" --handlerCountMax=300"
+#ENV JAVA_OPTS="-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false -Xmx8192m -XX:MaxPermSize=4096M -XX:+UseG1GC -XX:+ExplicitGCInvokesConcurrent" 
+#ENV JENKINS_OPTS=" --handlerCountMax=300"
 
 RUN chown -R ${user} "$JENKINS_HOME" /usr/share/jenkins/ref
 
@@ -72,7 +72,7 @@ EXPOSE ${http_port}
 EXPOSE ${agent_port}
 
 ENV COPY_REFERENCE_FILE_LOG $JENKINS_HOME/copy_reference_file.log
-RUN env | grep _ >> /etc/environment
+#RUN env | grep _ >> /etc/environment
 
 USER ${user}
 COPY jenkins-support /usr/local/bin/jenkins-support
